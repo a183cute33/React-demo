@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
+import ProgressDIY from './ProgressDIYByFunctionComponent';
 
 export default function Home() {
-  return <h1>hello home page</h1>;
+  const [value, setValue] = useState(10);
+  return (
+    <ProgressDIY
+      value={value}
+      onClick={(e) => {
+        setValue(e.target.value);
+      }}
+    />
+  );
 }
