@@ -1,32 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import useRate from '../../../src/customHook/useRate';
 
 export default function ProgressDIY(props) {
-  const [percent, setPercent] = useState(10);
-
-  const mounted = useRef();
-  const tm = useRef();
-  const tmTwo = useRef();
-
-  useEffect(() => {
-    if (!mounted.current) {
-      //componentDidMount
-      setPercent(props.value);
-      mounted.current = true;
-    } else {
-      //componentDidUpdate
-      if (percent > props.value) {
-        if (tm.current) clearTimeout(tm.current);
-        tmTwo.current = setTimeout(() => {
-          setPercent(percent - 1);
-        }, 20);
-      } else if (percent < props.value) {
-        if (tmTwo.current) clearTimeout(tmTwo.current);
-        tm.current = setTimeout(() => {
-          setPercent(percent + 1);
-        }, 20);
-      }
-    }
-  }, [props.value, percent]);
+  const percent = useRate(props.value);
 
   return (
     <div>
