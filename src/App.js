@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import Layout from './components/layout/index';
 import Login from './views/login/index';
 import Home from './views/home/index';
+import Dashboard from './views/dashboard/index';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -11,7 +13,10 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Home />
+        <Layout>
+          <Route path='/home' component={Home} />
+          <Route path='/second' component={Dashboard} />
+        </Layout>
       </Switch>
     </BrowserRouter>
   );
